@@ -14,6 +14,8 @@ public class Player2 : MonoBehaviour
     public int amountRemaining;
 
     [SerializeField]
+    private blocks tmp;
+    [SerializeField]
     private Transform groundCheck;
     [SerializeField]
     private float checkRadius;
@@ -38,6 +40,7 @@ public class Player2 : MonoBehaviour
         {
             Instantiate(block, v3, transform.rotation);
             amountRemaining--;
+            tmp.UpdateScore(amountRemaining);
         }            
         bP.transform.position = v3;
     }
