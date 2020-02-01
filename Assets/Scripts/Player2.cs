@@ -10,8 +10,12 @@ public class Player2 : MonoBehaviour
 {
     public GameObject block;
     public GameObject bP;
+    public GameObject gurder;
+    public GameObject gP;
+    private GameObject preview;
     private bool placementAllowed = false;
     public int amountRemaining;
+    private int blockType = 0;
 
     [SerializeField]
     private blocks tmp;
@@ -36,12 +40,34 @@ public class Player2 : MonoBehaviour
         Vector3 v3 = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
         v3.x = (float)Math.Round((double)v3.x); 
         v3.y = (float)Math.Round((double)v3.y);
-        if (Input.GetMouseButtonDown(0) && placementAllowed && amountRemaining > 0)
+        if (Input.GetMouseButtonDown(1))
         {
-            Instantiate(block, v3, transform.rotation);
-            amountRemaining--;
-            tmp.UpdateScore(amountRemaining);
+            if (blockType == 0){
+                Destroy(preview);
+                preview = Instantiate(gP, v3, transform.rotation);
+                blockType = 1;
+                tmp.UpdateScore(amountRemaining, "Gurder", 2);
+            }                
+            else if(blockType == 1){
+                Destroy(preview);
+                preview = Instantiate(bP, v3, transform.rotation);
+                blockType = 0;
+                tmp.UpdateScore(amountRemaining, "Block", 1);
+            }
+        } 
+        if (Input.GetMouseButtonDown(0) && /*placementAllowed &&*/ amountRemaining > 0){
+            if(blockType == 0){
+                Instantiate(block, v3, transform.rotation);
+                amountRemaining--;
+                tmp.UpdateScore(amountRemaining, "Block", 1);
+            }
+            else if(blockType == 1 && amountRemaining >1 ){
+                Instantiate(gurder, v3, transform.rotation);
+                amountRemaining-=2;
+                tmp.UpdateScore(amountRemaining, "Gurder", 2);
+            }
+            
         }
-        bP.transform.position = v3;
+        preview.transform.position = v3;
     }
 }
