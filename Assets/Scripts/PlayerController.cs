@@ -6,7 +6,9 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-   [SerializeField]
+    [SerializeField]
+    private float defaultSpeed;
+    [SerializeField]
     private float speed;
     [SerializeField]
     private float jumpForce;
@@ -20,13 +22,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public LayerMask whatIsGround;
 
+    [SerializeField]
+    private float cooldownTime;
 
     [SerializeField]
+    private bool speedcooldown;
+
+[SerializeField]
     private Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        speed = defaultSpeed;
+        speedcooldown = false;
     }
 
     void Update()
@@ -63,6 +72,28 @@ public class PlayerController : MonoBehaviour
                 rb.velocity += new Vector2(moveInput * speed, 0);         
         }
         rb.velocity = new Vector2(Math.Min(Math.Max(rb.velocity.x, -speed), speed), rb.velocity.y);
+    }
+
+    public void ChangeSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+        if (!speedcooldown)
+        {
+            StartCoroutine(SpeedChangeCoolDown());
+            speedcooldown = true;
+        }
+        
+    }
+
+    IEnumerator SpeedChangeCoolDown()
+    {
+        while(cooldownTime > 0)
+        {
+            cooldownTime -= Time.deltaTime;
+            yield return null;
+        }
+        speed = defaultSpeed;
+        yield return null;
     }
 
    
