@@ -41,7 +41,7 @@ public class Player2 : MonoBehaviour
             Instantiate(block, v3, transform.rotation);
             amountRemaining--;
             tmp.UpdateScore(amountRemaining);
-        }            
+        }
         bP.transform.position = v3;
     }
 }
