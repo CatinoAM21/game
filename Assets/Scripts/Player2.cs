@@ -19,6 +19,10 @@ public class Player2 : MonoBehaviour
     private float checkRadius;
     [SerializeField]
     public LayerMask whatIsGround;
+    [SerializeField]
+    public LayerMask whatIsPlayer;
+    [SerializeField]
+    private Transform playerCheck;
 
     void Start()
     {
@@ -26,7 +30,7 @@ public class Player2 : MonoBehaviour
     }
     void Update()
     {
-        placementAllowed = !Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        placementAllowed = (!Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround) && !Physics2D.OverlapCircle(playerCheck.position, checkRadius, whatIsPlayer));
         Vector3 v3 = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
         v3.x = (float)Math.Round((double)v3.x); 
         v3.y = (float)Math.Round((double)v3.y);
