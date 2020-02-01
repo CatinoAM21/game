@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
 
     private float moveInput;
 
+    
+    [SerializeField]
     private Rigidbody2D rb;
 
-    void start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
