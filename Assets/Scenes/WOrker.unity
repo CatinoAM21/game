@@ -419,17 +419,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 536572543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81dc121cdf389df4f8d8e080ca05f1f2, type: 3}
+  m_Script: {fileID: 11500000, guid: b452c89af9238a646acdbdd3680407f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSpeed: 0
   speed: 5
   jumpForce: 7
   deathHeight: -1
   groundCheck: {fileID: 370773744}
-  checkRadius: 0.5
+  checkRadius: 0.2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
+  cooldownTime: 0
+  speedcooldown: 0
   rb: {fileID: 536572548}
 --- !u!61 &536572545
 BoxCollider2D:
@@ -1218,7 +1221,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
-  playerCheck: {fileID: 0}
+  playerCheck: {fileID: 536572547}
 --- !u!4 &1693165110
 Transform:
   m_ObjectHideFlags: 0

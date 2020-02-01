@@ -27,19 +27,18 @@ public class Player2 : MonoBehaviour
     public LayerMask whatIsGround;
     [SerializeField]
     public LayerMask whatIsPlayer;
-    [SerializeField]
-    private Transform playerCheck;
 
     void Start()
     {
         amountRemaining = 4;
+        preview = Instantiate(bP, new Vector3(0, 0, 0), transform.rotation);
     }
     void Update()
-    {
-        placementAllowed = (!Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround) && !Physics2D.OverlapCircle(playerCheck.position, checkRadius, whatIsPlayer));
+    {        
         Vector3 v3 = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
         v3.x = (float)Math.Round((double)v3.x); 
         v3.y = (float)Math.Round((double)v3.y);
+        placementAllowed = (!Physics2D.OverlapCircle(v3, checkRadius, whatIsGround) && !Physics2D.OverlapCircle(v3, checkRadius, whatIsPlayer));
         if (Input.GetMouseButtonDown(1))
         {
             if (blockType == 0){
@@ -55,7 +54,7 @@ public class Player2 : MonoBehaviour
                 tmp.UpdateScore(amountRemaining, "Block", 1);
             }
         } 
-        if (Input.GetMouseButtonDown(0) && /*placementAllowed &&*/ amountRemaining > 0){
+        if (Input.GetMouseButtonDown(0) && placementAllowed && amountRemaining > 0){
             if(blockType == 0){
                 Instantiate(block, v3, transform.rotation);
                 amountRemaining--;
