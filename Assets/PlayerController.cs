@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,9 +10,8 @@ public class PlayerController : MonoBehaviour
     private float speed;
     [SerializeField]
     private float jumpForce;
-
+    public float deathHeight;
     private float moveInput;
-
     private bool isGrounded;
     [SerializeField]
     private Transform groundCheck;
@@ -19,10 +19,6 @@ public class PlayerController : MonoBehaviour
     private float checkRadius;
     [SerializeField]
     public LayerMask whatIsGround;
-   
-
-    [SerializeField]
-    Transform spawnPoint;
 
 
     [SerializeField]
@@ -36,21 +32,22 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded || Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            
-            rb.velocity = Vector2.up * jumpForce;
-            
+        {            
+            rb.velocity = Vector2.up * jumpForce;            
         }
 
         if (Input.GetKey("escape"))
         {
-            Application.Quit();
-           
+            Application.Quit();           
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-        SceneManager.LoadScene("WOrker");
+            SceneManager.LoadScene("WOrker");
+        }
+        if(transform.position.y < deathHeight)
+        {
+            SceneManager.LoadScene("WOrker");
         }
     }
 
@@ -58,19 +55,14 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-
         moveInput = Input.GetAxis("Horizontal");
-        if (isGrounded)        
-            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);        
-        else
-        {
+        if (isGrounded){
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        }else{
             if(rb.velocity.x <= speed && rb.velocity.x >= -speed)
-            rb.velocity += new Vector2(moveInput / 10 * speed, 0);
+                rb.velocity += new Vector2(moveInput * speed, 0);         
         }
-        if (rb.velocity.x > speed)
-            rb.velocity = new Vector2(speed, rb.velocity.y);
-        if(rb.velocity.x < -speed)
-            rb.velocity = new Vector2(-speed, rb.velocity.y);
+        rb.velocity = new Vector2(Math.Min(Math.Max(rb.velocity.x, -speed), speed), rb.velocity.y);
     }
 
    
