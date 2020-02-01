@@ -11,7 +11,17 @@ public class PlayerController : MonoBehaviour
 
     private float moveInput;
 
-    
+    private bool isGrounded;
+    [SerializeField]
+    private Transform groundCheck;
+    [SerializeField]
+    private float checkRadius;
+    [SerializeField]
+    public LayerMask whatIsGround;
+
+
+
+
     [SerializeField]
     private Rigidbody2D rb;
 
@@ -20,10 +30,24 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        {
+            
+            rb.velocity = Vector2.up * jumpForce;
+            
+        }
+    }
+
     void FixedUpdate()
     {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+
+
         moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        if(isGrounded)
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
     }
 
    
