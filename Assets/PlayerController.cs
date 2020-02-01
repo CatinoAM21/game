@@ -38,6 +38,12 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector2.up * jumpForce;
             
         }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+           
+        }
     }
 
     void FixedUpdate()
