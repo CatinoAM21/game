@@ -8,8 +8,8 @@ public class blocks : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI textMesH;
 
-    public void UpdateScore(int score)
+    public void UpdateScore(int score, string Block, int cost)
     {
-        textMesH.text = "Blocks Left: " + score.ToString();
+        textMesH.text = "Budget: " + score.ToString() + "\nBlock Selected: " + Block + "\nCost: " + cost.ToString();
     }
 }

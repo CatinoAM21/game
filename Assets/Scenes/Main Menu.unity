@@ -175,7 +175,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TO BE TITLED
+  m_text: Ruin and Repair
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f3853d8e4daa1c41845deb0d032595b, type: 2}
   m_sharedMaterial: {fileID: -3725476511146988930, guid: 2f3853d8e4daa1c41845deb0d032595b,
@@ -205,8 +205,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 128
+  m_fontSizeBase: 128
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -222,7 +222,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 56075524}
-    characterCount: 12
+    characterCount: 15
     spriteCount: 0
     spaceCount: 2
     wordCount: 3
