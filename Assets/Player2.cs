@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 public class Player2 : MonoBehaviour
 {
     public GameObject block;

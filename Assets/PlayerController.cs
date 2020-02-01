@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,8 +19,10 @@ public class PlayerController : MonoBehaviour
     private float checkRadius;
     [SerializeField]
     public LayerMask whatIsGround;
+   
 
-
+    [SerializeField]
+    Transform spawnPoint;
 
 
     [SerializeField]
@@ -32,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded)
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && isGrounded || Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             
             rb.velocity = Vector2.up * jumpForce;
@@ -44,6 +47,11 @@ public class PlayerController : MonoBehaviour
             Application.Quit();
            
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+        SceneManager.LoadScene("WOrker");
+        }
     }
 
     void FixedUpdate()
@@ -52,8 +60,17 @@ public class PlayerController : MonoBehaviour
 
 
         moveInput = Input.GetAxis("Horizontal");
-        if(isGrounded)
-            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        if (isGrounded)        
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);        
+        else
+        {
+            if(rb.velocity.x <= speed && rb.velocity.x >= -speed)
+            rb.velocity += new Vector2(moveInput / 10 * speed, 0);
+        }
+        if (rb.velocity.x > speed)
+            rb.velocity = new Vector2(speed, rb.velocity.y);
+        if(rb.velocity.x < -speed)
+            rb.velocity = new Vector2(-speed, rb.velocity.y);
     }
 
    
