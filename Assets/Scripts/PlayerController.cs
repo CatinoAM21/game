@@ -63,13 +63,13 @@ public class PlayerController : MonoBehaviour
         if(Physics2D.OverlapCircle(rb.transform.position, checkRadius, cannon)) {
             ChangeSpeed(0);
             ChangeSpeed(defaultSpeed);
-            Invoke("call", .2f);            
+            Invoke("call", .05f);            
         }
     }
     void call()
     {
         Debug.Log("Yee");
-        rb.velocity = new Vector2(32, 7);
+        rb.velocity = new Vector2(35, 10);
     }
     void FixedUpdate()
     {

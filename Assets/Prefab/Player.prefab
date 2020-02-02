@@ -103,7 +103,7 @@ MonoBehaviour:
   speed: 5
   jumpForce: 7
   groundCheck: {fileID: 2079924110570359757}
-  checkRadius: 0.1
+  checkRadius: 0.2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Bits: 1024
   cooldownTime: 1
   speedcooldown: 1
-  deathHeight: -5
+  deathHeight: -3
   rb: {fileID: 2079924110459402169}
 --- !u!50 &2079924110459402169
 Rigidbody2D:

@@ -35,5 +35,7 @@ public class Cement : MonoBehaviour
     {
         pl = col.gameObject.GetComponent<PlayerController>();
         pl.ChangeSpeed(pl.defaultSpeed);
+        GetComponent<AudioSource>().clip = otherClip;
+        GetComponent<AudioSource>().Stop();
     }
 }
