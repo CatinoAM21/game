@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.Animations;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    Animator anim;
+
     [SerializeField]
     private float defaultSpeed;
     [SerializeField]
@@ -28,6 +32,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool speedcooldown;
 
+  
+
 [SerializeField]
     private Rigidbody2D rb;
 
@@ -36,13 +42,16 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         speed = defaultSpeed;
         speedcooldown = false;
+        anim = GetComponent<Animator>();
+    
     }
 
     void Update()
     {
         if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space)) && isGrounded)
-        {            
-            rb.velocity = Vector2.up * jumpForce;            
+        {
+          
+            rb.velocity = Vector2.up * jumpForce;
         }
 
         if (Input.GetKey("escape"))
@@ -66,11 +75,24 @@ public class PlayerController : MonoBehaviour
 
         moveInput = Input.GetAxis("Horizontal");
         if (isGrounded){
+           
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+            
         }else{
+          
             if(rb.velocity.x <= speed && rb.velocity.x >= -speed)
                 rb.velocity += new Vector2(moveInput * speed, 0);         
         }
+        if(Input.GetKey(KeyCode.D)   || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey(KeyCode.RightArrow))
+        {
+            anim.SetBool("isWalking", true);
+        }
+        else 
+        {
+            anim.SetBool("isWalking", false);
+        }
+        
+
         rb.velocity = new Vector2(Math.Min(Math.Max(rb.velocity.x, -speed), speed), rb.velocity.y);
     }
 
@@ -83,6 +105,11 @@ public class PlayerController : MonoBehaviour
             speedcooldown = true;
         }
         
+    }
+    public void stop()
+    {
+        rb.velocity = new Vector2(0, 0);
+        jumpForce = 0;
     }
 
     IEnumerator SpeedChangeCoolDown()

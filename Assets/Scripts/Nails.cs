@@ -13,6 +13,10 @@ public class Nails : MonoBehaviour
    
     [SerializeField]
     private AudioClip otherClip;
+    [SerializeField]
+    private PlayerController pl;
+    [SerializeField]
+    private float newSpeed;
 
 
     void OnTriggerEnter2D(Collider2D col) {
@@ -23,9 +27,10 @@ public class Nails : MonoBehaviour
 
             audio.clip = otherClip;
             audio.Play();
-
-
-            Invoke("loadScene", 0.2f);
+            pl = col.gameObject.GetComponent<PlayerController>();
+            pl.ChangeSpeed(newSpeed);
+            pl.stop();
+            Invoke("loadScene", 1f);
             
         }
     }
