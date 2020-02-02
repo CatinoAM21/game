@@ -61,11 +61,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("WOrker");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if(transform.position.y < deathHeight)
         {
-            SceneManager.LoadScene("WOrker");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
