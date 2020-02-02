@@ -39,6 +39,6 @@ public class Nails : MonoBehaviour
 
     void loadScene()
     {
-        SceneManager.LoadScene("WOrker");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
