@@ -19,8 +19,14 @@ public class victoryZone : MonoBehaviour
 
             audio.clip = otherClip;
             audio.Play();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Invoke("loadNextScene", 0.2f);
         }
+    }
+
+    void loadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
