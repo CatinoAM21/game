@@ -91,6 +91,10 @@ public class PlayerController : MonoBehaviour
         }        
 
         rb.velocity = new Vector2(Math.Min(Math.Max(rb.velocity.x, -speed), speed), rb.velocity.y);
+        if (Input.GetKey(KeyCode.Escape)) {
+            GameObject.FindGameObjectWithTag("Music").GetComponent<MusicClass>().StopMusic();
+            SceneManager.LoadScene("Main Menu");
+        }            
     }
 
     public void ChangeSpeed(float newSpeed)
