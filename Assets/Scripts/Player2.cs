@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
-
-
 public class Player2 : MonoBehaviour
 {
     public GameObject block;
@@ -14,10 +11,9 @@ public class Player2 : MonoBehaviour
     public GameObject gP;
     public GameObject cannon;
     public GameObject cP;
+
     private GameObject preview;
-    private bool placementAllowed = false;
-    [SerializeField]
-    private int amountRemaining;
+    private bool placementAllowed = false;    
     private int blockType = 0;
 
     [SerializeField]
@@ -30,11 +26,13 @@ public class Player2 : MonoBehaviour
     public LayerMask whatIsGround;
     [SerializeField]
     public LayerMask whatIsPlayer;
+    [SerializeField]
+    private int amountRemaining;
 
     void Start()
     {
         preview = Instantiate(bP, new Vector3(0, 0, 0), transform.rotation);
-        amountRemaining = amountRemaining;
+        tmp.UpdateScore(amountRemaining, "Block", 1);
     }
     void Update()
     {        
@@ -42,7 +40,7 @@ public class Player2 : MonoBehaviour
         v3.x = (float)Math.Round((double)v3.x); 
         v3.y = (float)Math.Round((double)v3.y);
         placementAllowed = (!Physics2D.OverlapCircle(v3, checkRadius, whatIsGround) && !Physics2D.OverlapCircle(v3, checkRadius, whatIsPlayer));
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)) //Should most likely be a switch case lmao
         {
             if (blockType == 0){
                 Destroy(preview);
