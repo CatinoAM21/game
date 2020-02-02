@@ -16,6 +16,10 @@ public class playerEnterTrigger : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             rb.isKinematic = false;
+          }
+        if (collision.gameObject.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
         }
     }
 }
