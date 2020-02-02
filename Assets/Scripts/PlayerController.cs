@@ -82,12 +82,12 @@ public class PlayerController : MonoBehaviour
 
         moveInput = Input.GetAxis("Horizontal");
         if (isGrounded){
-           
+            anim.speed = Mathf.Abs(1 + 5 * (rb.velocity.x / speed));
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
             
         }else{
-          
-            if(rb.velocity.x <= speed && rb.velocity.x >= -speed)
+            anim.speed = 0;
+            if (rb.velocity.x <= speed && rb.velocity.x >= -speed)
                 rb.velocity += new Vector2(moveInput * speed, 0);         
         }
         if(Input.GetKey(KeyCode.D)   || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey(KeyCode.RightArrow))
@@ -97,8 +97,7 @@ public class PlayerController : MonoBehaviour
         else 
         {
             anim.SetBool("isWalking", false);
-        }
-        
+        }        
 
         rb.velocity = new Vector2(Math.Min(Math.Max(rb.velocity.x, -speed), speed), rb.velocity.y);
     }
