@@ -2077,6 +2077,8 @@ MonoBehaviour:
   bP: {fileID: 7535984310179496278, guid: 2fde5ce8a96fef44584ce22f78d5030b, type: 3}
   gurder: {fileID: 83410918740526628, guid: 3e2b21aa93f272c488f200b748e3c0df, type: 3}
   gP: {fileID: 83410918740526628, guid: 4d615320360cef24fa4b181674158e69, type: 3}
+  cannon: {fileID: 0}
+  cP: {fileID: 0}
   amountRemaining: 0
   tmp: {fileID: 1329571762}
   groundCheck: {fileID: 370773744}
@@ -2185,6 +2187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079924110459402173, guid: 9d15bd838eaeda842aeeb76cc5500d1b,
+        type: 3}
+      propertyPath: cannon.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 2079924110459402174, guid: 9d15bd838eaeda842aeeb76cc5500d1b,
         type: 3}
