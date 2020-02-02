@@ -106,6 +106,11 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    public void stop()
+    {
+        rb.velocity = new Vector2(0, 0);
+        jumpForce = 0;
+    }
 
     IEnumerator SpeedChangeCoolDown()
     {
