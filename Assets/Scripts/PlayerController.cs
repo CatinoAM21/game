@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private float moveInput;
     private bool isGrounded;
+    private float flightSpeed;
 
     void Start()
     {
@@ -50,9 +51,9 @@ public class PlayerController : MonoBehaviour
           
             rb.velocity = Vector2.up * jumpForce;
         }
-        if (Input.GetKey("escape")) {
+        /*if (Input.GetKey("escape")) { //Want that to send you to main menu
             Application.Quit();           
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.R)) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
@@ -61,35 +62,32 @@ public class PlayerController : MonoBehaviour
         }
         if(Physics2D.OverlapCircle(rb.transform.position, checkRadius, cannon)) {
             ChangeSpeed(0);
-            rb.velocity = new Vector2(0, 0);
-            Invoke("call", .5f);            
+            ChangeSpeed(defaultSpeed);
+            Invoke("call", .2f);            
         }
     }
     void call()
     {
         Debug.Log("Yee");
-        rb.velocity = new Vector2(30, 10);
+        rb.velocity = new Vector2(32, 7);
     }
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-        moveInput = Input.GetAxis("Horizontal");
+        moveInput = Input.GetAxis("Horizontal");        
         if (isGrounded){
-            anim.speed = Mathf.Abs(1 + 5 * (rb.velocity.x / speed));
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-            
-        }else{
+            anim.speed = Mathf.Abs(1 + 5 * (rb.velocity.x / speed));    
+        }else if(!isGrounded){
             anim.speed = 0;
-            if (rb.velocity.x <= speed && rb.velocity.x >= -speed)
-                rb.velocity += new Vector2(moveInput * speed, 0);         
+            rb.velocity += new Vector2(moveInput/4, 0);
         }
         if(Input.GetKey(KeyCode.D)   || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey(KeyCode.RightArrow)) {
             anim.SetBool("isWalking", true);
         } else {
             anim.SetBool("isWalking", false);
-        }        
-
+        }     
         rb.velocity = new Vector2(Math.Min(Math.Max(rb.velocity.x, -speed), speed), rb.velocity.y);
         if (Input.GetKey(KeyCode.Escape)) {
             GameObject.FindGameObjectWithTag("Music").GetComponent<MusicClass>().StopMusic();

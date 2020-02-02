@@ -37,9 +37,9 @@ public class Player2 : MonoBehaviour
     void Update()
     {        
         Vector3 v3 = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
-        v3.x = (float)Math.Round((double)v3.x); 
-        v3.y = (float)Math.Round((double)v3.y);
-        placementAllowed = (!Physics2D.OverlapCircle(v3, checkRadius, whatIsGround) && !Physics2D.OverlapCircle(v3, checkRadius, whatIsPlayer));
+        v3.x = (float)Math.Round((double)v3.x*4)/4; //Something Fucky
+        v3.y = (float)Math.Round((double)v3.y*4)/4;
+        placementAllowed = (!Physics2D.OverlapBox(v3, new Vector2(checkRadius,checkRadius), 0f, whatIsGround) && !Physics2D.OverlapBox(v3, new Vector2(checkRadius, checkRadius), 0f, whatIsPlayer));
         if (Input.GetMouseButtonDown(1)) //Should most likely be a switch case lmao
         {
             if (blockType == 0){
@@ -52,7 +52,7 @@ public class Player2 : MonoBehaviour
                 Destroy(preview);
                 preview = Instantiate(cP, v3, transform.rotation);
                 blockType = 2;
-                tmp.UpdateScore(amountRemaining, "Cannon", 5);
+                tmp.UpdateScore(amountRemaining, "Cannon", 4);
             }
             else if(blockType == 2){
                 Destroy(preview);

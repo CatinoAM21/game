@@ -49,13 +49,13 @@ MonoBehaviour:
   gP: {fileID: 83410918740526628, guid: 4d615320360cef24fa4b181674158e69, type: 3}
   cannon: {fileID: 8827741252444632266, guid: 209bf96c861821c4d9f71483a7b8a4d0, type: 3}
   cP: {fileID: 8827741252444632266, guid: 90594094ac777594e98b458f12aa934b, type: 3}
-  amountRemaining: 5
   tmp: {fileID: 0}
   groundCheck: {fileID: 0}
-  checkRadius: 0.4
+  checkRadius: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 512
+  amountRemaining: 5

@@ -112,7 +112,7 @@ MonoBehaviour:
     m_Bits: 1024
   cooldownTime: 1
   speedcooldown: 1
-  deathHeight: -1
+  deathHeight: -5
   rb: {fileID: 2079924110459402169}
 --- !u!50 &2079924110459402169
 Rigidbody2D:
