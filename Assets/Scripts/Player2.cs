@@ -16,7 +16,8 @@ public class Player2 : MonoBehaviour
     public GameObject cP;
     private GameObject preview;
     private bool placementAllowed = false;
-    public int amountRemaining;
+    [SerializeField]
+    private int amountRemaining;
     private int blockType = 0;
 
     [SerializeField]
@@ -33,6 +34,7 @@ public class Player2 : MonoBehaviour
     void Start()
     {
         preview = Instantiate(bP, new Vector3(0, 0, 0), transform.rotation);
+        amountRemaining = amountRemaining;
     }
     void Update()
     {        

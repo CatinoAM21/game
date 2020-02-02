@@ -71,11 +71,16 @@ public class PlayerController : MonoBehaviour
         }
         if(Physics2D.OverlapCircle(rb.transform.position, checkRadius, cannon))
         {
-            stop();
-            rb.velocity = new Vector2(30, 10);
+            ChangeSpeed(0);
+            rb.velocity = new Vector2(0, 0);
+            Invoke("call", .5f);            
         }
     }
-
+    void call()
+    {
+        Debug.Log("Yee");
+        rb.velocity = new Vector2(30, 10);
+    }
     void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
