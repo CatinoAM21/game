@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         }
         if(Physics2D.OverlapCircle(rb.transform.position, checkRadius, cannon))
         {
+            stop();
             rb.velocity = new Vector2(30, 10);
         }
     }

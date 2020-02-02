@@ -71,7 +71,7 @@ public class Player2 : MonoBehaviour
                 Instantiate(gurder, v3, transform.rotation);
                 amountRemaining-=2;
                 tmp.UpdateScore(amountRemaining, "Gurder", 2);
-            }else if(blockType == 3 && amountRemaining > 4)
+            }else if(blockType == 2 && amountRemaining > 3)
             {
                 Instantiate(cannon, v3, transform.rotation);
                 amountRemaining -= 4;
