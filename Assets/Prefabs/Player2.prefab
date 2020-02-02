@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7600848932802795668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7600848932802795670}
+  - component: {fileID: 7600848932802795669}
+  m_Layer: 0
+  m_Name: Player2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7600848932802795670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7600848932802795668}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.29609138, y: -1.2513702, z: -1.1134889}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7600848932802795669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7600848932802795668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216f26c042a130a4e8856a068aae1b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  block: {fileID: 7535984310179496278, guid: e0d69239da4430746ba1d6a502d26707, type: 3}
+  bP: {fileID: 7535984310179496278, guid: 2fde5ce8a96fef44584ce22f78d5030b, type: 3}
+  gurder: {fileID: 83410918740526628, guid: 3e2b21aa93f272c488f200b748e3c0df, type: 3}
+  gP: {fileID: 83410918740526628, guid: 4d615320360cef24fa4b181674158e69, type: 3}
+  cannon: {fileID: 8827741252444632266, guid: 209bf96c861821c4d9f71483a7b8a4d0, type: 3}
+  cP: {fileID: 8827741252444632266, guid: 90594094ac777594e98b458f12aa934b, type: 3}
+  amountRemaining: 5
+  tmp: {fileID: 0}
+  groundCheck: {fileID: 0}
+  checkRadius: 0.4
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 256
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 512

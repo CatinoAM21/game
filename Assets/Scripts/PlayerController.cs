@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private float checkRadius;
     [SerializeField]
     public LayerMask whatIsGround;
+    [SerializeField]
+    public LayerMask cannon;
 
     [SerializeField]
     private float cooldownTime;
@@ -66,6 +68,10 @@ public class PlayerController : MonoBehaviour
         if(transform.position.y < deathHeight)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if(Physics2D.OverlapCircle(rb.transform.position, checkRadius, cannon))
+        {
+            rb.velocity = new Vector2(30, 10);
         }
     }
 

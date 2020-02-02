@@ -12,6 +12,8 @@ public class Player2 : MonoBehaviour
     public GameObject bP;
     public GameObject gurder;
     public GameObject gP;
+    public GameObject cannon;
+    public GameObject cP;
     private GameObject preview;
     private bool placementAllowed = false;
     public int amountRemaining;
@@ -30,7 +32,6 @@ public class Player2 : MonoBehaviour
 
     void Start()
     {
-        amountRemaining = 4;
         preview = Instantiate(bP, new Vector3(0, 0, 0), transform.rotation);
     }
     void Update()
@@ -49,6 +50,12 @@ public class Player2 : MonoBehaviour
             }                
             else if(blockType == 1){
                 Destroy(preview);
+                preview = Instantiate(cP, v3, transform.rotation);
+                blockType = 2;
+                tmp.UpdateScore(amountRemaining, "Cannon", 5);
+            }
+            else if(blockType == 2){
+                Destroy(preview);
                 preview = Instantiate(bP, v3, transform.rotation);
                 blockType = 0;
                 tmp.UpdateScore(amountRemaining, "Block", 1);
@@ -64,6 +71,11 @@ public class Player2 : MonoBehaviour
                 Instantiate(gurder, v3, transform.rotation);
                 amountRemaining-=2;
                 tmp.UpdateScore(amountRemaining, "Gurder", 2);
+            }else if(blockType == 3 && amountRemaining > 4)
+            {
+                Instantiate(cannon, v3, transform.rotation);
+                amountRemaining -= 4;
+                tmp.UpdateScore(amountRemaining, "Cannon", 2);
             }
             
         }
