@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public Animator anim;
     [SerializeField]
-    private float defaultSpeed;
+    public float defaultSpeed;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -100,10 +100,10 @@ public class PlayerController : MonoBehaviour
     public void ChangeSpeed(float newSpeed)
     {
         speed = newSpeed;
-        if (!speedcooldown) {
+        /*if (!speedcooldown) { //IDK how this works but removing it fixed everything DON'T TOUCH
             StartCoroutine(SpeedChangeCoolDown());
             speedcooldown = true;
-        }
+        }*/
         
     }
     public void stop()
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         while(cooldownTime > 0) {
             cooldownTime -= Time.deltaTime;
-            yield return null;
+            //yield return null;
         }
         speed = defaultSpeed;
         yield return null;

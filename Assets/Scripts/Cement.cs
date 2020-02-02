@@ -31,4 +31,9 @@ public class Cement : MonoBehaviour
             audio.Play();
         }
     }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        pl = col.gameObject.GetComponent<PlayerController>();
+        pl.ChangeSpeed(pl.defaultSpeed);
+    }
 }
